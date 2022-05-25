@@ -67,7 +67,7 @@ export default {
   name: "HomeComponent",
 
   setup() {
-    const api_url = "http://192.168.1.24:5000/"
+    const api_url = "http://localhost:5000/"
     const message = ref("");
     const token = localStorage.getItem("token");
     const store = useStore();

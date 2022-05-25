@@ -44,7 +44,7 @@ export default {
     name:"navComponent",
 
     setup(){
-    const api_url = "http://192.168.1.24:5000/"
+    const api_url = "http://localhost:5000/"
     const store = useStore();
 
     const logged = computed(()=>store.state.authenticated)
