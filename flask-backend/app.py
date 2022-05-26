@@ -150,19 +150,18 @@ def login():
     if request.method == "POST":
         username = request.json['username']
         password = request.json['password']  # password
-        try:
+        user = User.objects.get(username=username)
 
-            user = User.objects.get(username=username)
-
-            if sha256_crypt.verify(password, user["password"]):
+        if sha256_crypt.verify(password, user["password"]):
                 token = jwt.encode({'username': username, 'exp': datetime.datetime.utcnow(
                 ) + datetime.timedelta(minutes=15)}, app.config['SECRET_KEY'])
                 return jsonify({'token': token})
 
-            else:
+        else:
                 return {"message": "Password invalid"}
-        except:
-            return{"message": "Wrong Login!"}
+
+            
+   
 
 
 # article işlemleri  add article ayır

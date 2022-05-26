@@ -2,20 +2,16 @@
   <section class="vh-100" style="background-color: #9a616d">
     <div class="container py-5 h-100">
       <h1>{{ message }}</h1>
-      <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col col-xl-10">
+      <div class="row d-flex justify-content-center align-items-center h-70">
+        <div class="col col-xxxl-10">
           <div class="row g-0">
-            <div class="col-md-6 col-lg-7 d-flex align-items-center">
+            <div class="col-md-6 col-lg-8 d-flex align-items-center">
               <div class="input-group">
-                <!-- <div class="form-outline">
-    <input type="search" id="form1" class="form-control" />
-  </div>
-  <button type="button" class="btn btn-danger">Search
-  </button> -->
-              </div>
+
+            </div>
             </div>
             <table class="table table-hover table-dark">
-              <thead v-if="items" >
+              <thead v-if="items">
                 <tr>
                   <th scope="col">Vote</th>
                   <th scope="col">Title</th>
@@ -29,21 +25,15 @@
                 <tr v-for="(item, index) in items" :key="index">
                   <th scope="row">{{ item.vote }}</th>
                   <td>{{ item.title }}</td>
-                  <td>{{ item.description}}</td>
+                  <td>{{ item.description }}</td>
                   <td>{{ item.author }}</td>
                   <td v-if="logged">
-                    <button
-                      @click="Upvote(item._id.$oid)"
-                      class="btn btn-success"
-                    >
+                    <button @click="Upvote(item._id.$oid)" class="btn btn-success">
                       Up
                     </button>
                   </td>
                   <td v-if="logged">
-                    <button
-                      @click="Downvote(item._id.$oid)"
-                      class="btn btn-danger"
-                    >
+                    <button @click="Downvote(item._id.$oid)" class="btn btn-danger">
                       Down
                     </button>
                   </td>
@@ -75,7 +65,7 @@ export default {
 
     onMounted(() => {
       axios
-        .get(api_url+"getUser", {
+        .get(api_url + "getUser", {
           headers: {
             token: `${token}`,
           },
@@ -102,7 +92,7 @@ export default {
           message.value = ``;
         });
 
-      axios.get(api_url+"getArticle").then((response) => {
+      axios.get(api_url + "getArticle").then((response) => {
         items.value = response.data;
       });
     });
@@ -112,7 +102,7 @@ export default {
     const Upvote = (id: string) => {
       axios
         .post(
-          api_url+"upvote",
+          api_url + "upvote",
           {
             id,
           },
@@ -122,7 +112,7 @@ export default {
         )
         .then((response) => {
           console.log(response.data)
-          axios.get(api_url+"getArticle").then((response) => {
+          axios.get(api_url + "getArticle").then((response) => {
             items.value = response.data;
           });
         });
@@ -131,7 +121,7 @@ export default {
     const Downvote = (id: string) => {
       axios
         .post(
-          api_url+"downvote",
+          api_url + "downvote",
           {
             id,
           },
@@ -141,7 +131,7 @@ export default {
         )
         .then((response) => {
           console.log(response.data)
-          axios.get(api_url+"getArticle").then((response) => {
+          axios.get(api_url + "getArticle").then((response) => {
             items.value = response.data;
           });
         });

@@ -106,6 +106,7 @@ export default {
       username,password})
     .then(response=>{
       let token = response.data.token
+      console.log(response)
       localStorage.setItem("token",token)
       
       
